@@ -2,24 +2,48 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IngredientCard, ingredients } from "@/components/IngredientCard";
 import PulsingDots from "@/components/PulsingDots";
+import { toast } from "sonner";
+
+const WEBHOOK_URL = "https://workflow.ccbp.in/webhook-test/4d1b7e01-ddf7-4f81-b94b-b477a4bde18b";
 
 const StoryYappers = () => {
   const [topic, setTopic] = useState("");
   const [selections, setSelections] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
-  const [showResult, setShowResult] = useState(false);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSelect = (label: string, value: string) => {
     setSelections((prev) => ({ ...prev, [label]: value }));
   };
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
+    if (!topic.trim()) {
+      toast("Please enter a story topic first!");
+      return;
+    }
     setIsLoading(true);
-    setShowResult(false);
-    setTimeout(() => {
+    setAudioUrl(null);
+    setError(null);
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: topic }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      const data = await res.json();
+      if (data.audioFile) {
+        setAudioUrl(data.audioFile);
+        setTopic("");
+      } else {
+        throw new Error("No audio returned");
+      }
+    } catch {
+      setError("Oops! Something went wrong. Please try again");
+    } finally {
       setIsLoading(false);
-      setShowResult(true);
-    }, 2500);
+    }
   };
 
   return (
