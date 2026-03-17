@@ -158,20 +158,32 @@ const StoryYappers = () => {
               >
                 <PulsingDots />
               </motion.div>
-            ) : showResult ? (
+            ) : error ? (
               <motion.div
-                key="result"
+                key="error"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center space-y-2"
               >
+                <span className="text-4xl">😔</span>
+                <p className="font-display text-lg font-semibold text-destructive">
+                  {error}
+                </p>
+              </motion.div>
+            ) : audioUrl ? (
+              <motion.div
+                key="audio"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center space-y-4 w-full"
+              >
                 <span className="text-4xl">🎧</span>
-                <p className="font-display text-xl font-semibold text-foreground">
-                  Feature coming soon!
+                <p className="font-display text-lg font-semibold text-foreground">
+                  Story is ready! Click play to listen ✨
                 </p>
-                <p className="font-body text-sm text-muted-foreground">
-                  We're weaving the magic behind the scenes ✨
-                </p>
+                <audio controls className="w-full rounded-full" src={audioUrl}>
+                  Your browser does not support audio.
+                </audio>
               </motion.div>
             ) : (
               <motion.p
