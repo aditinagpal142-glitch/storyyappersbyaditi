@@ -4,7 +4,7 @@ import { IngredientCard, ingredients } from "@/components/IngredientCard";
 import PulsingDots from "@/components/PulsingDots";
 import { toast } from "sonner";
 
-const WEBHOOK_URL = "https://workflow.ccbp.in/webhook-test/4d1b7e01-ddf7-4f81-b94b-b477a4bde18b";
+const WEBHOOK_URL = "https://workflow.ccbp.in/webhook/4d1b7e01-ddf7-4f81-b94b-b477a4bde18b";
 
 const StoryYappers = () => {
   const [topic, setTopic] = useState("");
