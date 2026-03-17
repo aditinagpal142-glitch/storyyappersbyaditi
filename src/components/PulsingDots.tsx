@@ -24,7 +24,7 @@ const PulsingDots = () => (
       />
     ))}
     <span className="ml-2 text-sm font-body text-muted-foreground">
-      Your tale is being woven from starlight...
+      Creating story ... please wait!
     </span>
   </div>
 );
