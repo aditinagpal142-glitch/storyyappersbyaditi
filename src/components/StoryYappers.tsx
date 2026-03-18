@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IngredientCard, ingredients } from "@/components/IngredientCard";
 import PulsingDots from "@/components/PulsingDots";
 import { toast } from "sonner";
+import niatLogo from "@/assets/niat-logo.png";
 
 const WEBHOOK_URL = "https://workflow.ccbp.in/webhook/4d1b7e01-ddf7-4f81-b94b-b477a4bde18b";
 
