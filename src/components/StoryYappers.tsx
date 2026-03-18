@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IngredientCard, ingredients } from "@/components/IngredientCard";
 import PulsingDots from "@/components/PulsingDots";
 import { toast } from "sonner";
+import niatLogo from "@/assets/niat-logo.png";
 
 const WEBHOOK_URL = "https://workflow.ccbp.in/webhook/4d1b7e01-ddf7-4f81-b94b-b477a4bde18b";
 
@@ -50,7 +51,7 @@ const StoryYappers = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border/50">
-        <div className="container max-w-2xl mx-auto px-4 py-4 flex items-center justify-center">
+        <div className="container max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
           <motion.h1
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,6 +59,13 @@ const StoryYappers = () => {
           >
             ✨ Story Yappers
           </motion.h1>
+          <motion.img
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            src={niatLogo}
+            alt="NIAT Logo"
+            className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg object-contain"
+          />
         </div>
       </header>
 
